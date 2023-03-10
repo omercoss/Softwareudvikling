@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+MultiElectronicJournal -- Læge
+Læge "1" -- "1..*" Patient
+Patient "1..*" -- "0..*" MultiElectronicJournal
+Patient <|-- Sygdomme
+Patient <|-- Behandlingsplaner
+Sygdomme "1..*"  -- "1..*" Behandlingsplaner
+
+class MultiElectronicJournal {
+  Webadresse : string
+}
+
+class Læge {
+  Name : string
+  Afdeling : string
+  Læge ID: integer
+  Administrer medicin()
+  Se patientjournal()
+  Kommunikation med sundhedsprofessionelle()
+}
+
+
+class Patient {
+  Navn : string
+  Adresse: string
+  CPR-nummer : integer
+  Telefonnummer: integer
+  Opret konsultation()
+  Se fremtidige konsultationer()
+  Se medicinkort()
+  Kommunikation med sundhedsprofessionelle()
+}
+
+class Sygdomme {
+  Sygdom1 : string
+  Sygdom2 : string
+  Sygdom3 : string
+}
+
+class Behandlingsplaner {
+  Behandling1 : string
+  Behandling2 : string
+  Behandling3 : string
+  Tjek ledighed()
+}
+
+@enduml

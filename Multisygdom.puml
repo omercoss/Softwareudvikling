@@ -1,0 +1,32 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor Læge
+actor Patient
+actor Sekretær
+
+rectangle Multi-Electronic-Journal {
+    Læge --> (Se patientjournalen)
+    Læge --> (Medicinadministration)
+    (Se patientjournalen) .> (Medicinadministration) : <<extend>>
+    Patient --> (Se patientjournalen)
+    (Se patientjournalen) .> (Se testresultater) : <<include>>
+    Læge --> (Se testresultater)
+    Patient --> (Se testresultater)
+    Patient --> (Oprettelse af konsultation)
+    Sekretær --> (Oprettelse af konsultation)
+    Sekretær --> (Bekræftelse af konsultation)
+    Sekretær --> (Registrer patienten)
+    (Registrer patienten) .> (Oprettelse af konsultation) : <<extend>>
+    (Oprettelse af konsultation) .> (Bekræftelse af konsultation) : <<include>>
+    Læge --> (Kommunikationsforum)
+    Patient --> (Kommunikationsforum)
+    Læge --> (Overblik af konsultationer)
+    Patient --> (Overblik af konsultationer)
+    Sekretær --> (Overblik af konsultationer)
+    (Oprettelse af konsultation) .> (Overblik af konsultationer) : <<include>>
+}
+
+@enduml
